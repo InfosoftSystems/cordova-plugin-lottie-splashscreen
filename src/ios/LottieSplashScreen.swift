@@ -50,7 +50,8 @@ import Lottie
         if visible {
             let fadeOutDuation = Double(commandDelegate?.settings["LottieFadeOutDuration".lowercased()] as? String ?? "0")!
             if fadeOutDuation > 0 {
-                UIView.animate(withDuration: fadeOutDuation, animations: {
+                let tempDuration = fadeOutDuation / 1000
+                UIView.animate(withDuration: tempDuration, animations: {
                     self.animationView?.alpha = 0.0
                 }, completion: { _ in
                     self.removeView()
@@ -115,14 +116,10 @@ import Lottie
         let parentView = viewController.view
         parentView?.isUserInteractionEnabled = false
 
-        animationViewContainer = UIView(frame: (parentView?.bounds)!)
+        animationViewContainer = UIView(frame: (UIScreen.main.bounds))
         animationViewContainer?.layer.zPosition = 1
 
-        let backgroundColor = getUIModeDependentPreference(basePreferenceName: "LottieBackgroundColor", defaultValue: "#ffffff")
-
-        animationViewContainer?.autoresizingMask = [
-            .flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin
-        ]
+        let backgroundColor = commandDelegate?.settings["LottieBackgroundColor".lowercased()] as? String
         animationViewContainer?.backgroundColor = UIColor(hex: backgroundColor)
     }
 
