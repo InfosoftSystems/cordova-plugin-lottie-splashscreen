@@ -141,7 +141,7 @@ import Lottie
                     self.destroyView()
                     self.processInvalidURLError(error: error!)
                 }
-            }, animationCache: cacheDisabled ? nil : DefaultAnimationCache.sharedCache)
+            }, animationCache: cacheDisabled ? nil : LRUAnimationCache.sharedCache)
         } else {
             animationLocation = Bundle.main.bundleURL.appendingPathComponent(animationLocation).path
             animationView = LottieAnimationView(filePath: animationLocation)
