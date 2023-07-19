@@ -6,9 +6,11 @@ import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.webkit.WebView
@@ -230,8 +232,14 @@ class LottieSplashScreen : CordovaPlugin() {
                 else -> style.Theme_Translucent_NoTitleBar
             },
         )
-        splashDialog.window?.setBackgroundDrawable(ColorDrawable(color))
-        splashDialog.window?.setBackgroundBlurRadius(20)
+
+        var background = ColorDrawable(color);
+
+        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        splashDialog.window?.setDimAmount(0.85f);
+        background.alpha = 0;
+        splashDialog.window?.setBackgroundDrawable(background)
         splashDialog.setContentView(animationView)
         splashDialog.setCancelable(false)
     }
