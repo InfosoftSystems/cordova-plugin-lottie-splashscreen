@@ -230,7 +230,7 @@ class LottieSplashScreen : CordovaPlugin() {
             ColorHelper.parseColor(
                 getUIModeDependentPreference(
                     "LottieBackgroundColor",
-                    "#ffffff",
+                    "#ffffff00",
                 ),
             )
         animationView.setBackgroundColor(color)
