@@ -349,7 +349,7 @@ class LottieSplashScreen : CordovaPlugin() {
             nightMode -> preferences.getString("""${preferenceBaseName}Dark""", defaultValue)
             else -> preferences.getString("""${preferenceBaseName}Light""", defaultValue)
         }
-println("¦@#°¦@°#¦@#°¦@#°¦@°#¦@°#:    " + preferenceValue);
+
         if (preferenceValue.isBlank()) {
             preferenceValue = preferences.getString(preferenceBaseName, defaultValue)
         }
