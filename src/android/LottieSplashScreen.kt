@@ -231,6 +231,7 @@ class LottieSplashScreen : CordovaPlugin() {
             },
         )
         splashDialog.window?.setBackgroundDrawable(ColorDrawable(color))
+        splashDialog.window?.setBackgroundBlurRadius(20)
         splashDialog.setContentView(animationView)
         splashDialog.setCancelable(false)
     }
@@ -348,7 +349,7 @@ class LottieSplashScreen : CordovaPlugin() {
             nightMode -> preferences.getString("""${preferenceBaseName}Dark""", defaultValue)
             else -> preferences.getString("""${preferenceBaseName}Light""", defaultValue)
         }
-
+println("¦@#°¦@°#¦@#°¦@#°¦@°#¦@°#:    " + preferenceValue);
         if (preferenceValue.isBlank()) {
             preferenceValue = preferences.getString(preferenceBaseName, defaultValue)
         }
