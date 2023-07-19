@@ -246,14 +246,14 @@ class LottieSplashScreen : CordovaPlugin() {
                     else -> style.Theme_Translucent_NoTitleBar
                 },
             )
-        var background = ColorDrawable(color);
-        background.alpha = 0;
+        var background = ColorDrawable(color)
+        background.alpha = 0
         splashDialog.window?.setBackgroundDrawable(background)
         splashDialog.window?.setBackgroundBlurRadius(20)
 
         splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
-        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        splashDialog.window?.setDimAmount(0.85f);
+        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        splashDialog.window?.setDimAmount(0.85f)
 
         splashDialog.setContentView(animationView)
         splashDialog.setCancelable(false)
