@@ -50,8 +50,7 @@ import Lottie
         if visible {
             let fadeOutDuation = Double(commandDelegate?.settings["LottieFadeOutDuration".lowercased()] as? String ?? "0")!
             if fadeOutDuation > 0 {
-                let tempDuration = fadeOutDuation / 1000
-                UIView.animate(withDuration: tempDuration, animations: {
+                UIView.animate(withDuration: fadeOutDuation / 1000, animations: {
                     self.animationView?.alpha = 0.0
                 }, completion: { _ in
                     self.removeView()
@@ -119,7 +118,8 @@ import Lottie
         animationViewContainer = UIView(frame: (UIScreen.main.bounds))
         animationViewContainer?.layer.zPosition = 1
 
-        let backgroundColor = commandDelegate?.settings["LottieBackgroundColor".lowercased()] as? String
+        let backgroundColor = getUIModeDependentPreference(basePreferenceName: "LottieBackgroundColor", defaultValue: "#ffffff")
+
         animationViewContainer?.backgroundColor = UIColor(hex: backgroundColor)
     }
 
@@ -141,7 +141,7 @@ import Lottie
                     self.destroyView()
                     self.processInvalidURLError(error: error!)
                 }
-            }, animationCache: cacheDisabled ? nil : LRUAnimationCache.sharedCache)
+            }, animationCache: cacheDisabled ? nil : DefaultAnimationCache.sharedCache)
         } else {
             animationLocation = Bundle.main.bundleURL.appendingPathComponent(animationLocation).path
             animationView = LottieAnimationView(filePath: animationLocation)

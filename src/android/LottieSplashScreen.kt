@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.webkit.WebView
@@ -231,7 +230,7 @@ class LottieSplashScreen : CordovaPlugin() {
             ColorHelper.parseColor(
                 getUIModeDependentPreference(
                     "LottieBackgroundColor",
-                    "#ffffff00",
+                    "#ffffff",
                 ),
             )
         animationView.setBackgroundColor(color)
@@ -248,11 +247,6 @@ class LottieSplashScreen : CordovaPlugin() {
         var background = ColorDrawable(color)
         background.alpha = 0
         splashDialog.window?.setBackgroundDrawable(background)
-        splashDialog.window?.setBackgroundBlurRadius(20)
-
-        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
-        splashDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        splashDialog.window?.setDimAmount(0.85f)
 
         splashDialog.setContentView(animationView)
         splashDialog.setCancelable(false)
